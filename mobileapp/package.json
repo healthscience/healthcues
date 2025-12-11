@@ -8,10 +8,6 @@
     "node": ">=20 <21"
   },
   "scripts": {
-    "dev:server:android": "vite serve -- --env.android --env.hmr",
-    "dev:server:ios": "vite serve -- --env.ios --env.hmr",
-    "dev:android": "concurrently -k -n vite,ns 'npm run dev:server:android' 'wait-on tcp:5173 && npm run android'",
-    "dev:ios": "concurrently -k -n vite,ns 'npm run dev:server:ios' 'wait-on tcp:5173 && npm run ios'",
     "android": "npx nativescript debug android",
     "ios": "npx nativescript debug ios",
     "clean": "npx nativescript clean",
