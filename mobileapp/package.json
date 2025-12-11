@@ -1,0 +1,26 @@
+{
+  "name": "heathcues",
+  "version": "0.1.0",
+  "private": true,
+  "description": "heathCues mobile app (NativeScript + Vue 3, JS, Vite)",
+  "scripts": {
+    "dev:android": "ns run android",
+    "android": "ns run android --no-hmr",
+    "dev:ios": "ns run ios",
+    "ios": "ns run ios --no-hmr",
+    "clean": "ns clean",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@nativescript/core": "latest",
+    "nativescript-vue": "latest",
+    "@valor/nativescript-websockets": "latest"
+  },
+  "devDependencies": {
+    "@nativescript/android": "latest",
+    "@nativescript/vite": "latest",
+    "concurrently": "latest",
+    "wait-on": "latest",
+    "vitest": "latest"
+  }
+}
