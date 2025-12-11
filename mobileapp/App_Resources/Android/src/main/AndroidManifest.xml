@@ -4,9 +4,21 @@
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:name="com.tns.NativeScriptApplication"
         android:networkSecurityConfig="@xml/network_security"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.tns.NativeScriptActivity"
+            android:exported="true"
+            android:theme="@style/LaunchScreenTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|locale|uiMode"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
