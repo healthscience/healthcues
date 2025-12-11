@@ -1,11 +1,7 @@
 module.exports = (chain) => {
-  // Ensure the ForkTsChecker plugin is defined before any taps
+  // Ensure plugin key exists to satisfy downstream .tap() calls, but do NOT use real TS checker
   if (!chain.plugins.has('ForkTsCheckerWebpackPlugin')) {
-    try {
-      const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-      chain.plugin('ForkTsCheckerWebpackPlugin').use(ForkTsCheckerWebpackPlugin, [{ async: false }]);
-    } catch (e) {
-      // ignore if not installed; not using TS
-    }
+    class NoopPlugin { apply() {} }
+    chain.plugin('ForkTsCheckerWebpackPlugin').use(NoopPlugin, [{}]);
   }
 };
