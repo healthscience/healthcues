@@ -7,25 +7,24 @@
   "engines": {
     "node": ">=20 <21"
   },
-
   "scripts": {
-    "dev:android": "ns run android",
-    "android": "ns run android --no-hmr",
-    "dev:ios": "ns run ios",
-    "ios": "ns run ios --no-hmr",
-    "clean": "ns clean",
+    "dev:android": "npx nativescript run android",
+    "android": "npx nativescript run android --no-hmr",
+    "dev:ios": "npx nativescript run ios",
+    "ios": "npx nativescript run ios --no-hmr",
+    "clean": "npx nativescript clean",
     "test": "vitest"
   },
   "dependencies": {
-    "@nativescript/core": "latest",
-    "nativescript-vue": "latest",
-    "@valor/nativescript-websockets": "latest"
+    "@nativescript/core": "9.0.7",
+    "nativescript-vue": "3.0.2",
+    "@valor/nativescript-websockets": "2.0.2"
   },
   "devDependencies": {
-    "@nativescript/android": "latest",
-    "@nativescript/vite": "latest",
-    "concurrently": "latest",
-    "wait-on": "latest",
-    "vitest": "latest"
+    "@nativescript/android": "9.0.0",
+    "@nativescript/vite": "1.0.4",
+    "nativescript": "9.0.1",
+    "vite": "7.2.7",
+    "vitest": "1.6.0"
   }
 }
