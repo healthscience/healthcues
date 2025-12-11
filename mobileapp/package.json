@@ -8,23 +8,29 @@
     "node": ">=20 <21"
   },
   "scripts": {
-    "dev:android": "npx nativescript run android",
-    "android": "npx nativescript run android --no-hmr",
-    "dev:ios": "npx nativescript run ios",
-    "ios": "npx nativescript run ios --no-hmr",
+    "dev:server:android": "vite serve -- --env.android --env.hmr",
+    "dev:server:ios": "vite serve -- --env.ios --env.hmr",
+    "dev:android": "concurrently -k -n vite,ns 'npm run dev:server:android' 'wait-on tcp:5173 && npm run android'",
+    "dev:ios": "concurrently -k -n vite,ns 'npm run dev:server:ios' 'wait-on tcp:5173 && npm run ios'",
+    "android": "npx nativescript debug android",
+    "ios": "npx nativescript debug ios",
     "clean": "npx nativescript clean",
+    "postinstall": "patch-package",
     "test": "vitest"
   },
   "dependencies": {
-    "@nativescript/core": "9.0.7",
+    "@nativescript/core": "9.0.1",
     "nativescript-vue": "3.0.2",
     "@valor/nativescript-websockets": "2.0.2"
   },
   "devDependencies": {
     "@nativescript/android": "9.0.0",
-    "@nativescript/vite": "1.0.4",
+    "@nativescript/vite": "1.0.2",
     "nativescript": "9.0.1",
     "vite": "7.2.7",
-    "vitest": "1.6.0"
+    "vitest": "1.6.0",
+    "patch-package": "8.0.1",
+    "concurrently": "9.0.1",
+    "wait-on": "7.2.0"
   }
 }
