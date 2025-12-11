@@ -26,6 +26,7 @@
   "devDependencies": {
     "@nativescript/android": "9.0.0",
     "@nativescript/vite": "1.0.2",
+    "@nativescript/webpack": "5.0.28",
     "nativescript": "9.0.1",
     "vite": "7.2.7",
     "vitest": "1.6.0",
