@@ -4,8 +4,8 @@ import { vueConfig } from '@nativescript/vite';
 export default defineConfig(({ mode }) => {
   const base = vueConfig({ mode });
   return mergeConfig(base, {
-    server: {
-      host: true
-    }
+    server: { host: true },
+    esbuild: { target: 'es2019' },
+    build: { target: 'es2019' }
   });
 });
