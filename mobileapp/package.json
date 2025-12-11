@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "heathCues mobile app (NativeScript + Vue 3, JS, Vite)",
+  "main": "src/main.js",
   "scripts": {
     "dev:android": "ns run android",
     "android": "ns run android --no-hmr",
