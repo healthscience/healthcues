@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <!-- Base theme NativeScript expects -->
+  <style name="AppThemeBase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Customize your base theme here if needed -->
+  </style>
+
+  <!-- App theme extends the base -->
+  <style name="AppTheme" parent="AppThemeBase">
     <item name="android:windowBackground">@color/ns_primary</item>
     <item name="android:windowDisablePreview">true</item>
   </style>
-  <style name="LaunchScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+  <!-- Launch screen theme -->
+  <style name="LaunchScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="android:windowBackground">@drawable/splashscreen</item>
     <item name="android:windowDisablePreview">true</item>
   </style>
+
+  <!-- Toolbar styles NativeScript expects -->
+  <style name="NativeScriptToolbarStyleBase" parent="ThemeOverlay.MaterialComponents.ActionBar" />
+  <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase" />
 </resources>
