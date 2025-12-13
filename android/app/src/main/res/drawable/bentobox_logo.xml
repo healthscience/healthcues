@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Outer circle background -->
+    <path
+        android:fillColor="#cfd3f0"
+        android:pathData="M100,10a90,90 0 1,0 0,180a90,90 0 1,0 0,-180z"/>
+    <!-- Overlapping hex-like shapes approximated with rectangles -->
+    <group android:rotation="-20" android:pivotX="80" android:pivotY="100">
+        <path android:fillColor="#5157a4" android:fillAlpha="0.9"
+            android:pathData="M30,80h70v60h-70z"/>
+    </group>
+    <group android:rotation="20" android:pivotX="120" android:pivotY="100">
+        <path android:fillColor="#5157a4" android:fillAlpha="0.9"
+            android:pathData="M100,60h70v60h-70z"/>
+    </group>
+    <!-- Center cube approximation -->
+    <path android:fillColor="#1f248b" android:fillAlpha="0.9"
+        android:pathData="M80,80h40v40h-40z"/>
+</vector>
