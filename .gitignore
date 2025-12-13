@@ -1,22 +1,9 @@
-# Node
-node_modules/
-package-lock.json
-.npm
-
-# NativeScript
-platforms/
-hooks/
-.android/
-.ios/
+# Gradle
 .gradle/
-App_Resources/Android/src/main/res/drawable-*/
-App_Resources/Android/src/main/res/mipmap-*/
-
-# Build outputs
-dist/
-.vite/
-.cache/
-
-# IDE
-.vscode/
-.idea/
+**/build/
+/local.properties
+/.idea/
+**/.cxx/
+/captures/
+.externalNativeBuild/
+.DS_Store
