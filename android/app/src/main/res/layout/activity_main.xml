@@ -7,13 +7,15 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:contentDescription="BentoBox logo"
         android:src="@drawable/bentobox_logo"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/helloText"
+        android:layout_marginEnd="12dp" />
 
     <TextView
         android:id="@+id/helloText"
@@ -21,10 +23,9 @@
         android:layout_height="wrap_content"
         android:text="healthCues on BentoBoxDS"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toEndOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
