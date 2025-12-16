@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "healthCues-android"
+rootProject.name = "healthCues"
 include(":app")
