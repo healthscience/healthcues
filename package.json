@@ -1,0 +1,31 @@
+{
+  "name": "healthcues-bare",
+  "version": "0.0.1",
+  "description": "run HOP native in android app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/healthscience/healthcues.git"
+  },
+  "keywords": [
+    "bentoboxds",
+    "hop",
+    "holepunch",
+    "pear",
+    "bare",
+    "android"
+  ],
+  "author": "aboynejames",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/healthscience/healthcues/issues"
+  },
+  "homepage": "https://github.com/healthscience/healthcues#readme",
+  "devDependencies": {
+    "bare-link": "^2.1.10",
+    "bare-pack": "^1.5.1"
+  }
+}
