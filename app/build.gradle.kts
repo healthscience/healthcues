@@ -31,7 +31,31 @@ android {
     }
     kotlinOptions { jvmTarget = "17" }
     buildFeatures { viewBinding = true }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("src/main/addons", "libs/bare-kit/jni")
+            assets.srcDirs("src/main/assets")
+        }
+    }
 }
+
+
+// bare-link and bare-pack integration
+
+tasks.register("link", org.gradle.api.tasks.Exec::class) {
+    workingDir = rootDir
+    commandLine("node_modules/.bin/bare-link", "--preset", "android", "--needs", "libbare-kit.so", "--out", "app/src/main/addons")
+}
+
+tasks.register("packApp", org.gradle.api.tasks.Exec::class) {
+    workingDir = rootDir
+    commandLine("node_modules/.bin/bare-pack", "--preset", "android", "--out", "app/src/main/assets/app.bundle", "app/src/main/js/app.js")
+}
+
+tasks.register("pack") { dependsOn("packApp") }
+
+tasks.named("preBuild") { dependsOn("link", "pack") }
 
 dependencies {
     implementation(files("libs/bare-kit/classes.jar"))

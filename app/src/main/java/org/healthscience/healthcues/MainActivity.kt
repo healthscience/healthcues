@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.healthscience.healthcues.chat.Message
 import org.healthscience.healthcues.chat.MessageAdapter
+import to.holepunch.bare.kit.Worklet
 
 class MainActivity : AppCompatActivity() {
     private lateinit var chatList: RecyclerView
     private lateinit var messageInput: EditText
     private lateinit var sendButton: ImageButton
     private lateinit var adapter: MessageAdapter
+
+    private var worklet: Worklet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +33,21 @@ class MainActivity : AppCompatActivity() {
         chatList.layoutManager = LinearLayoutManager(this).apply { stackFromEnd = true }
         chatList.adapter = adapter
 
+        try {
+            worklet = Worklet(null)
+            assets.open("app.bundle").use { inStream ->
+                worklet!!.start("/app.bundle", inStream, null)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         fun sendCurrent() {
             val text = messageInput.text.toString().trim()
             if (text.isEmpty()) return
             adapter.append(Message(text, false))
             messageInput.setText("")
             chatList.scrollToPosition(adapter.itemCount - 1)
-            // Stub beebee reply for now
             chatList.postDelayed({
                 adapter.append(Message("beebee received: $text", true))
                 chatList.scrollToPosition(adapter.itemCount - 1)
@@ -47,5 +58,21 @@ class MainActivity : AppCompatActivity() {
         messageInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEND) { sendCurrent(); true } else false
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        try { worklet?.suspend() } catch (_: Exception) {}
+    }
+
+    override fun onResume() {
+        super.onResume()
+        try { worklet?.resume() } catch (_: Exception) {}
+    }
+
+    override fun onDestroy() {
+        try { worklet?.terminate() } catch (_: Exception) {}
+        worklet = null
+        super.onDestroy()
     }
 }
