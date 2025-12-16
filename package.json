@@ -24,6 +24,11 @@
     "url": "https://github.com/healthscience/healthcues/issues"
   },
   "homepage": "https://github.com/healthscience/healthcues#readme",
+  "dependencies": {
+    "hyperbee": "^2.23.0",
+    "hypercore": "^11.0.0",
+    "random-access-memory": "^6.1.0"
+  },
   "devDependencies": {
     "bare-link": "^2.1.10",
     "bare-pack": "^1.5.1"

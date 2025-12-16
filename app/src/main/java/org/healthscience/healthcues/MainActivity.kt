@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.healthscience.healthcues.chat.Message
 import org.healthscience.healthcues.chat.MessageAdapter
 import to.holepunch.bare.kit.Worklet
+import to.holepunch.bare.kit.IPC
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 
 class MainActivity : AppCompatActivity() {
     private lateinit var chatList: RecyclerView
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: MessageAdapter
 
     private var worklet: Worklet? = null
+    private var ipc: IPC? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,19 @@ class MainActivity : AppCompatActivity() {
             assets.open("app.bundle").use { inStream ->
                 worklet!!.start("/app.bundle", inStream, null)
             }
+            ipc = IPC(worklet)
+            ipc!!.readable {
+                val buf = ipc!!.read()
+                if (buf != null) {
+                    val bytes = ByteArray(buf.remaining())
+                    buf.get(bytes)
+                    val msg = String(bytes, StandardCharsets.UTF_8)
+                    runOnUiThread {
+                        adapter.append(Message("[bee] $msg", true))
+                        chatList.scrollToPosition(adapter.itemCount - 1)
+                    }
+                }
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -48,10 +65,14 @@ class MainActivity : AppCompatActivity() {
             adapter.append(Message(text, false))
             messageInput.setText("")
             chatList.scrollToPosition(adapter.itemCount - 1)
-            chatList.postDelayed({
-                adapter.append(Message("beebee received: $text", true))
-                chatList.scrollToPosition(adapter.itemCount - 1)
-            }, 400)
+
+            // Try to write the message to the worklet IPC
+            try {
+                val buf = ByteBuffer.wrap(text.toByteArray(StandardCharsets.UTF_8))
+                ipc?.writable {
+                    ipc?.write(buf)
+                }
+            } catch (_: Exception) {}
         }
 
         sendButton.setOnClickListener { sendCurrent() }
